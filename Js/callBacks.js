@@ -25,4 +25,4 @@ getUserdetails("123", function(userRoll) {
 });
 
 // the callback functions are nested within each other which makes the code hard to read and maintain it is known as callback hell
-//in order to avoid callback hell we use promises
+// in order to avoid callback hell we use promises

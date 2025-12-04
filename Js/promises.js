@@ -30,15 +30,15 @@ getUserdetails("123").then((result) => {
 });
 
 // const promise = new Promise(function(resolve, reject) {
-//     if(true){
+//     if(true) {
 //         resolve("Promise resolved successfully");
-//     }else{
+//     } else {
 //         reject("Promise rejected");
 //     }
 // });
-// promise.then(function(successMessage){
+// promise.then(function(successMessage) {
 //     console.log(successMessage);
-// }).catch(function(errorMessage){
+// }).catch(function(errorMessage) {
 //     console.log(errorMessage);
 // });
 /*
@@ -46,8 +46,8 @@ getUserdetails("123").then((result) => {
 Promises:
 A promise is an object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
 A promise has mainly two states:
-1.Resolve: whenever the api response is successfull
-2.Reject: whenever the api response is failed or resulted in an error
+1. Resolve: whenever the api response is successfull
+2. Reject: whenever the api response is failed or resulted in an error
 Syntax:
 const promise = new Promise((resolve, reject) => {
     if (true) {

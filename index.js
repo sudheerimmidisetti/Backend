@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb://localhost:27017").then(() => console.log("db connected"))
+mongoose.connect("mongodb+srv://sudheerimmidisetti_db_user:Sudheer%401610@cluster0.avm40k3.mongodb.net/").then(() => console.log("db connected"))
     .catch((error) => console.log(error));
 
 app.use('/', studentRouter);
@@ -16,6 +16,6 @@ app.get('/users', (req, res) => {
     res.send("hello this is from backend");
 })
 
-app.listen(7007, () => {
-    console.log("server running at port 7007")
+app.listen(1610, () => {
+    console.log("server running at port 1610")
 });

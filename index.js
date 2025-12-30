@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
 import studentRouter from './routers/studentsRouters.js';
 
 const app = express();
@@ -16,6 +16,6 @@ app.get('/users', (req, res) => {
     res.send("hello this is from backend");
 })
 
-app.listen(1610, () => {
-    console.log("server running at port 1610")
+app.listen(2885, () => {
+    console.log("server running at port 2885")
 });

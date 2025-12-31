@@ -59,7 +59,7 @@ const updateStudents = async (req, res) => {
     }
 };
 
-// This is for testing 👀⁉️
+// This is for testing
 const getStudentsDetailsWithFilters = async (req, res) => {
     try {
         const { stdBranch, stdCollege, stdCgpa } = req.query;
@@ -72,4 +72,5 @@ const getStudentsDetailsWithFilters = async (req, res) => {
     }
 
 }
+
 export { getStudentsDetails, addStudents, getStudentById, getStudentsDetailsWithFilters, updateStudents };

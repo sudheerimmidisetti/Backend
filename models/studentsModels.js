@@ -9,6 +9,9 @@ const studentSchema = new mongoose.Schema({
     },
     stdPhone: {
         type : Number
+    },
+    stdStatus: {
+        type : Boolean
     }
 });
 

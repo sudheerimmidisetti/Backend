@@ -19,3 +19,6 @@ app.get('/users', (req, res) => {
 app.listen(2885, () => {
     console.log("server running at port 2885")
 });
+
+// Image Upload required path
+app.use(express.static(path.join(__dirname,"uploads")));

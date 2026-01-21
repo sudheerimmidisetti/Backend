@@ -127,4 +127,31 @@ const UploadFile = async(req,res) => {
     }
 }
 
-export {getStudentsDetails, addStudents, getStudentById, getStudentsDetailsWithFilters, updateStudents , UpdateStudentsStatus, deleteStudentById, deleteStudentById2, deleteStudentMany, UploadFile};
+// Token GenerateFunction
+const JWT = require('jsonwebtoken')
+const GenerateToken = async(req,res)=>{
+    try{
+        const JWTtoken = JWT.sign(
+            {
+                "user_id":"11223344"
+            },
+            "!@#CCAfdv678678",
+            {
+              expiresIn:'10s'  
+            }
+        )
+        res.cookie("token",JWTtoken,{
+            httpOnly:true,
+            secure:false,
+            sameSite:'lax',
+            maxAge:10*1000
+        })
+        return res.status(200).json(JWTtoken)
+    }
+    catch(err){
+        console.log(err)
+        return res.status(500).json(err)
+    }
+}
+
+export {getStudentsDetails, addStudents, getStudentById, getStudentsDetailsWithFilters, updateStudents , UpdateStudentsStatus, deleteStudentById, deleteStudentById2, deleteStudentMany, UploadFile, GenerateToken};

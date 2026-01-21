@@ -22,3 +22,13 @@ app.listen(2885, () => {
 
 // Image Upload required path
 app.use(express.static(path.join(__dirname,"uploads")));
+
+// Cookie-parser and Cors Customization
+const Cookieparser = require('cookie-parser')
+app.use(Cookieparser())
+app.use(
+  cors({
+    origin: "http://localhost:5173", 
+    credentials: true         
+  })
+);

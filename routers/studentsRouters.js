@@ -1,30 +1,31 @@
-import express from "express";
+// import express from "express";
+const express = require("express");
 const router = express.Router();
-import {
-  getStudentsDetails,
-  addStudents,
-  getStudentById,
-  getStudentsDetailsWithFilters,
-  updateStudents,
-  UpdateStudentsStatus,
-  deleteStudentById,
-  deleteStudentById2,
-  deleteStudentMany,
-} from "../controllers/studentsController.js";
 
-router.get("/get-students", getStudentsDetails);
-router.post("/add-students", addStudents);
-router.get("/get-student-byid/:userid", getStudentById); //params single
-router.get("/get-std-details-withfilter", getStudentsDetailsWithFilters); //query parameters
-router.put("/put-students/:id", updateStudents); //put method
-router.put("/update-students-status", UpdateStudentsStatus); //put method to update multiple documents
-router.delete("/delete-student-byid/:userid", deleteStudentById); //delete method
-router.delete("/delete-student-byid2/:userid", deleteStudentById2); //delete method using findByIdAndDelete
-router.delete("/delete-student-many", deleteStudentMany); //delete method to delete multiple documents
+const studentController = require("../controllers/studentsController.js");
+// import {
+//   getStudentsDetails,
+//   addStudents,
+//   getStudentById,
+//   getStudentsDetailsWithFilters,
+//   updateStudents,
+//   UpdateStudentsStatus,
+//   deleteStudentById,
+//   deleteStudentById2,
+//   deleteStudentMany,
+//   UploadFile,
+//   GenerateToken,
+//   Encryption,
+//   Verifyencrypt
+// } from "../controllers/studentsController.js";
 
 // /Image upload requires variables
 const multer = require("multer");
 const path = require("path");
+
+const JWT = require("jsonwebtoken");
+
+const Bcrypt = require("bcrypt");
 
 // Image Upload required functions
 const Storage = multer.diskStorage({
@@ -54,20 +55,47 @@ const Upload = multer({
   },
 });
 
-route.post("/file-upload", Upload.array("file", 3), FirstController.UploadFile);
+router.get("/get-students", studentController.getStudentsDetails);
+router.post("/add-students", studentController.addStudents);
+router.get("/get-student-byid/:userid", studentController.getStudentById); //params single
+router.get(
+  "/get-std-details-withfilter",
+  studentController.getStudentsDetailsWithFilters,
+); //query parameters
+router.put("/put-students/:id", studentController.updateStudents); //put method
+router.put("/update-students-status", studentController.UpdateStudentsStatus); //put method to update multiple documents
+router.delete(
+  "/delete-student-byid/:userid",
+  studentController.deleteStudentById,
+); //delete method
+router.delete(
+  "/delete-student-byid2/:userid",
+  studentController.deleteStudentById2,
+); //delete method using findByIdAndDelete
+router.delete("/delete-student-many", studentController.deleteStudentMany); //delete method to delete multiple documents
+
+router.post(
+  "/file-upload",
+  Upload.array("file", 3),
+  studentController.UploadFile,
+);
 
 // Middleware VerifyFunction
-route.get('/send-mail',
-    async(req,res,next)=>{
-        try{
-            const decoded = JWT.verify(req.cookies.token,"!@#CCAfdv678678")
-            console.log(decoded)
-            next();
-        }
-        catch(err){
-            return res.status(400).json("Token Expired")
-        }
-    },
-FirstController.SendMail);
+router.get(
+  "/send-mail",
+  async (req, res, next) => {
+    try {
+      const decoded = JWT.verify(req.cookies.token, "!@#CCAfdv678678");
+      console.log(decoded);
+      next();
+    } catch (err) {
+      return res.status(400).json("Token Expired");
+    }
+  },
+  studentController.SendMail,
+);
 
-export default router;
+router.post("/encrypt-token", studentController.Encryption);
+router.post("/verify-token", studentController.Verifyencrypt);
+
+module.exports = router;

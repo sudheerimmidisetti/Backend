@@ -1,7 +1,13 @@
-import express from 'express';
-import cors from 'cors';
-import mongoose from 'mongoose';
-import studentRouter from './routers/studentsRouters.js';
+// import express from 'express';
+// import cors from 'cors';
+// import mongoose from 'mongoose';
+// import studentRouter from './routers/studentsRouters.js';
+
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const path = require("path");
+const studentRouter = require("./routers/studentsRouters.js");
 
 const app = express();
 app.use(express.json());
@@ -24,11 +30,11 @@ app.listen(2885, () => {
 app.use(express.static(path.join(__dirname,"uploads")));
 
 // Cookie-parser and Cors Customization
-const Cookieparser = require('cookie-parser')
-app.use(Cookieparser())
-app.use(
-  cors({
-    origin: "http://localhost:5173", 
-    credentials: true         
-  })
-);
+// const Cookieparser = require('cookie-parser')
+// app.use(Cookieparser())
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173", 
+//     credentials: true         
+//   })
+// );
